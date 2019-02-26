@@ -9,9 +9,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         private static int defaultSize = 25;
 
 
-        public ArrayHeadTailList(int size){
+        public ArrayHeadTailList(int initialCapacity){
+            if (initialCapacity < 1) {
+                 initialCapacity = defaultSize;
+            }
+            listArray = (T[]) new Object[initialCapacity];
             numberOfElements = 0;
-            listArray = (T[]) new Object[size];
         }
 
         public ArrayHeadTailList(){
@@ -67,6 +70,16 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
                throw new IndexOutOfBoundsException("There is no element at position :" + position);
             }
         }
+    
+        @Override
+        public T getEntry(int position) {
+            // Check if array is empty first
+            if (!isEmpty() && (position > -1 && position <= numberOfElements)) {
+                return listArray[position];
+            } else {
+                return null; // according to interface specification
+            }
+        } // end getEntry()
 
         @Override
         public void display() {
@@ -74,27 +87,37 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         }
 
         @Override
-        public int contains(T entry) {
-            return 0;
+        public int contains(T anEntry) {
+            for (int i = 0; i < numberOfElements; i++) {
+                if (listArray[i].equals(anEntry)) {
+                        return i;
+                }
+            }
+            return -1;
         }
 
         @Override
         public boolean isEmpty() {
-            if(numberOfElements == 0){
-                return true;
-            } else {
-                return false;
-            }
+            return (numberOfElements == 0);
         }
 
         @Override
         public int size() {
-            return 0;
+            return numberOfElements;
         }
 
         @Override
         public void clear() {
-
+            for (int i = 0; i < numberOfElements; i++) {
+                listArray[i] = null;
+            }
+            numberOfElements = 0;
+            /*
+            for (T element : listArray) {
+                element = null; 
+            }
+            numberOfElements = 0;
+            */
         }
 
         private void shiftBack(){
