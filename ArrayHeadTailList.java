@@ -58,28 +58,23 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         @Override
         public T removeBack() {
-            return null;
-        }
-
-        @Override
-        public T getEntry(int position) throws IndexOutOfBoundsException {
-            if(listArray[position] != null) {
-                return listArray[position];
+            if (!isEmpty()) {
+                return listArray[numberOfElements - 1];
+            } else {
+                return null; // if list is empty, according to specification
             }
-           else {
-               throw new IndexOutOfBoundsException("There is no element at position :" + position);
-            }
+            // Simplified below
+            //return (!isEmpty()) ? listArray[numberOfElements - 1] : null;
         }
     
         @Override
         public T getEntry(int position) {
-            // Check if array is empty first
             if (!isEmpty() && (position > -1 && position <= numberOfElements)) {
-                return listArray[position];
+                return listArray[position]; // reference to the indicated entry
             } else {
-                return null; // according to interface specification
+                return null; // according to interface specification, return null if index is out of bounds
             }
-        } // end getEntry()
+        }
 
         @Override
         public void display() {
@@ -106,20 +101,20 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             return numberOfElements;
         }
 
+        // Removes elements But does it retain the capacity??
         @Override
         public void clear() {
             for (int i = 0; i < numberOfElements; i++) {
                 listArray[i] = null;
             }
             numberOfElements = 0;
-            /*
-            for (T element : listArray) {
-                element = null; 
-            }
+            /* If capacity is supposed to be retained...
+            
+            listArray = numberOfElements == 0 ? (T[]) new Object[defaultSize] : (T[]) new Object[numberOfElements];
             numberOfElements = 0;
             */
         }
-
+    
         private void shiftBack(){
 
             if (numberOfElements + 1 > listArray.length){
