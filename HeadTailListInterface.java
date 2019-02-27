@@ -1,81 +1,88 @@
-package com.Tljessop.InterfacePractice;
-
-/** An interface for the HeadTailList abastract data type.
- Entries in a HeadTailList can only added or removed from either the first or last index.
- Yet entries may be accessed from any position on the list.
- @author Thomas Lynn Jessop
- @version 1.0
- @since 2019-01-31
+/**
+ * An interface for an ADT list. Entries in a list have positions that begin with 0. 
+ * Entries can only be removed or added to the beginning and end of the list.
+ * Entries can be accessed from any position. 
+ * 
+ * @author Jessica Masters
  */
-
 public interface HeadTailListInterface<T> {
-    //Thomas
-    /**
-     * Adds a new object of the specified type to the first index of the list
-     * @param newEntry The object to be placed at the beginning of the list
-     */
-    void addFront(T newEntry);
-//Thomas
-    /**
-     * Adds a new object of the specified type to the last index of the list
-     * @param newEntry The object to be placed at the end of the list
-     */
-    void addBack(T newEntry);
-
-    /**
-     * Removes the first object on the list, and shifts to the front the remaining objects on the list.
-     * After doing so the size of the list is decremented
-     * @return The object that was at the beginning of the list
-     * @throws IndexOutOfBoundsException This exception is thrown if the method is used on an empty list
-     */
-    T removeFront();
-
-    /**
-     * Removes the last object on the list.
-     * After doing so the size of the list is decremented
-     * @return The object that was at the beginning of the list
-     * @throws IndexOutOfBoundsException This exception is thrown if the method is used on an empty list
-     */
-    T removeBack();
-//Thomas
-    /**
-     * Returns the contains of the list at the given index
-     * @param position The index of the desired object
-     * @return The object at the given index
-     * @throws IndexOutOfBoundsException This exception is thrown if the given index does not exist on the list
-     */
-    T getEntry(int position);
-
-    /**
-     * Formats the list in to a user-friendly String and writes that String to standard out
-     */
-    void display();
-
-    /**
-     * Searches the list for a given object of the specified type.
-     * Note the a positive result will occur for matches that aliases or logical equal
-     * @param entry the object that is to be deemed whether or not is contained in the list
-     * @return If the given object is found in the list the index of the matching object is returned.
-     *         If the given object is not found returns -1
-     */
-    int contains (T entry);
-
-    /**
-     * Informs the caller of whether the list currently contains any objects
-     * @return Returns true if there are no objects in the list, otherwise returns false
-     */
-    boolean isEmpty();
-
-    /**
-     * Returns the current length of the list
-     * @return The number of objects currently in the list.
-     */
-    int size();
-
-    /**
-     * Removes all objects from the list and sets the list length to 0
-     */
-    void clear();
+	
+	/**
+	 * Adds a new entry to the beginning of the list. 
+	 * Entries currently in the list are shifted down.
+	 * The list's size is increased by 1.
+	 * 
+	 * @param newEntry The object to be added as a new entry.
+	 */
+	public void addFront(T newEntry);
+	
+	/**
+	 * Adds a new entry to the end of the list. 
+	 * Entries currently in the list are unaffected.
+	 * The list's size is increased by 1.
+	 * 
+	 * @param newEntry The object to be added as a new entry.
+	 */
+	public void addBack(T newEntry);
 
 
-}//Class HeadTailListInterface
+
+	/**
+	 * Removes an entry from the beginning of the list. 
+	 * Entries currently in the list are shifted up.
+	 * The list's size is decreased by 1.
+	 * 
+	 * @return A reference to the removed entry or null if the list is empty.
+	 */
+	public T removeFront();
+	
+	/**
+	 * Removes an entry from the end of the list. 
+	 * Entries currently in the list are unaffected.
+	 * The list's size is decreased by 1.
+	 * 
+	 * @return A reference to the removed entry or null if the list is empty.
+	 */
+	public T removeBack();
+
+	
+	/** Removes all entries from this list. */
+	public void clear();
+
+	
+	/**
+	 * Retrieves the entry at a given position in this list.
+	 * 
+	 * @param givenPosition An integer that indicates the position of the desired entry.
+	 * @return A reference to the indicated entry or null if the index is out of bounds.
+	 */
+	public T getEntry(int givenPosition);
+	
+	/**
+	 * Displays the contents of the list to the console, in order.
+	 */
+	public void display();
+	
+	/**
+	 * Checks whether this list contains a given entry.
+	 * 
+	 * @param anEntry the object to search for in the list.
+	 * @return the position of the entry that was found or -1 if the object is not found.
+	 */
+	public int contains(T anEntry);
+
+
+	/**
+	 * Gets the length of this list.
+	 * 
+	 * @return The integer number of entries currently in the list.
+	 */
+	public int size();
+
+	/**
+	 * Checks whether this list is empty.
+	 * 
+	 * @return True if the list is empty, or false if the list contains one or more elements.
+	 */
+	public boolean isEmpty();
+} 
