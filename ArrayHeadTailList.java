@@ -25,14 +25,11 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         @Override
         public void addFront(T newEntry) {
 
-            System.out.println(Arrays.toString(listArray));
             if(listArray[0] != null ){
                 this.shiftBack();
             }
             numberOfElements++;
             listArray[0] = newEntry;
-            System.out.println(Arrays.toString(listArray));
-            System.out.println();
         }
 
         @Override
@@ -45,9 +42,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
                 listArray[numberOfElements] = newEntry;
             }
 
-
             numberOfElements++;
-            System.out.println(Arrays.toString(listArray));
 
         }
 
@@ -101,18 +96,13 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             return numberOfElements;
         }
 
-        // Removes elements But does it retain the capacity??
         @Override
         public void clear() {
             for (int i = 0; i < numberOfElements; i++) {
                 listArray[i] = null;
             }
             numberOfElements = 0;
-            /* If capacity is supposed to be retained...
             
-            listArray = numberOfElements == 0 ? (T[]) new Object[defaultSize] : (T[]) new Object[numberOfElements];
-            numberOfElements = 0;
-            */
         }
     
         private void shiftBack(){
