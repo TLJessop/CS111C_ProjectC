@@ -9,9 +9,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         private static int defaultSize = 25;
 
 
-        public ArrayHeadTailList(int size){
+        public ArrayHeadTailList(int initialCapacity){
+            if (initialCapacity < 1) {
+                 initialCapacity = defaultSize;
+            }
+            listArray = (T[]) new Object[initialCapacity];
             numberOfElements = 0;
-            listArray = (T[]) new Object[size];
         }
 
         public ArrayHeadTailList(){
@@ -55,16 +58,21 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         @Override
         public T removeBack() {
-            return null;
-        }
-
-        @Override
-        public T getEntry(int position) throws IndexOutOfBoundsException {
-            if(listArray[position] != null) {
-                return listArray[position];
+            if (!isEmpty()) {
+                return listArray[numberOfElements - 1];
+            } else {
+                return null; // if list is empty, according to specification
             }
-           else {
-               throw new IndexOutOfBoundsException("There is no element at position :" + position);
+            // Simplified below
+            //return (!isEmpty()) ? listArray[numberOfElements - 1] : null;
+        }
+    
+        @Override
+        public T getEntry(int position) {
+            if (!isEmpty() && (position > -1 && position <= numberOfElements)) {
+                return listArray[position]; // reference to the indicated entry
+            } else {
+                return null; // according to interface specification, return null if index is out of bounds
             }
         }
 
@@ -74,29 +82,39 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         }
 
         @Override
-        public int contains(T entry) {
-            return 0;
+        public int contains(T anEntry) {
+            for (int i = 0; i < numberOfElements; i++) {
+                if (listArray[i].equals(anEntry)) {
+                        return i;
+                }
+            }
+            return -1;
         }
 
         @Override
         public boolean isEmpty() {
-            if(numberOfElements == 0){
-                return true;
-            } else {
-                return false;
-            }
+            return (numberOfElements == 0);
         }
 
         @Override
         public int size() {
-            return 0;
+            return numberOfElements;
         }
 
+        // Removes elements But does it retain the capacity??
         @Override
         public void clear() {
-
+            for (int i = 0; i < numberOfElements; i++) {
+                listArray[i] = null;
+            }
+            numberOfElements = 0;
+            /* If capacity is supposed to be retained...
+            
+            listArray = numberOfElements == 0 ? (T[]) new Object[defaultSize] : (T[]) new Object[numberOfElements];
+            numberOfElements = 0;
+            */
         }
-
+    
         private void shiftBack(){
 
             if (numberOfElements + 1 > listArray.length){
