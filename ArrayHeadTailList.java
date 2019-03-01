@@ -131,8 +131,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         public void display() {
           for(T item : listArray){
             if(!item == null){
-              System.out.printf("%s", item);
-              System.out.println();
+              System.out.printf("%s %n", item);
             }
           }
         }
