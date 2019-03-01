@@ -48,20 +48,22 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         @Override
         public T removeFront() {
-            return null;
+          private T temp = listArray[0];
+          shiftUp();
+          numberOfElements--;
+            return temp;
         }
 
         @Override
         public T removeBack() {
-            if (!isEmpty()) {
-                return listArray[numberOfElements - 1];
-            } else {
-                return null; // if list is empty, according to specification
+            private T temp = listArray[numberOfElements-1];
+            listArray[numberOfElements - 1] = null;
+            if(numberOfElements>0){
+              numberOfElements--;
             }
-            // Simplified below
-            //return (!isEmpty()) ? listArray[numberOfElements - 1] : null;
+            return temp;
         }
-    
+
         @Override
         public T getEntry(int position) {
             if (!isEmpty() && (position > -1 && position <= numberOfElements)) {
@@ -73,7 +75,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         @Override
         public void display() {
-
+          for(T item : listArray){
+            if(!item == null){
+              System.out.printf("%s", item);
+              System.out.println();
+            }
+          }
         }
 
         @Override
@@ -102,9 +109,9 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
                 listArray[i] = null;
             }
             numberOfElements = 0;
-            
+
         }
-    
+
         private void shiftBack(){
 
             if (numberOfElements + 1 > listArray.length){
