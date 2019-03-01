@@ -55,6 +55,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         public T removeFront() {
           private T temp = listArray[0];
           shiftUp();
+          numberOfElements--;
             return temp;
         }
 
@@ -62,6 +63,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         public T removeBack() {
             private T temp = listArray[numberOfElements-1];
             listArray[numberOfElements - 1] = null;
+            numberOfElements--;
             return temp;
         }
 
