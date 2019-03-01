@@ -2,14 +2,31 @@ package Interface_Project_C;
 
 import java.util.Arrays;
 
+/**
+ * This class is an array based implemntilaton of HeadTailListInterface
+ * 
+ * @author Michael Vincent Rayo
+ * @author Thomas Lynn Jessop
+ * @author Kurt Wahlberg
+ * 
+ * @since 2019-02-28
+ * 
+ * @version 2.0
+ *
+ */
+
 public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
+    //Instance data
         private T[] listArray;
         private int numberOfElements;
         private static int defaultSize = 25;
 
-
-        public ArrayHeadTailList(int initialCapacity){
+    /**
+     * Constructs an ArrayHeadTailList of a given size
+     * @param initialCapacity the desired stating size of the list
+     */
+    public ArrayHeadTailList(int initialCapacity){
             if (initialCapacity < 1) {
                  initialCapacity = defaultSize;
             }
@@ -17,11 +34,19 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             numberOfElements = 0;
         }
 
-        public ArrayHeadTailList(){
+    /**
+     *Constructs an ArrayHeadTailList of the default size
+     */
+    public ArrayHeadTailList(){
            this(defaultSize);
         }
 
-
+    /**
+     * Adds a new element to the font of the list.
+     * The list's size is incermented.
+     *
+     * @param newEntry The object to be added as a new element in the list.
+     */
         @Override
         public void addFront(T newEntry) {
 
@@ -32,6 +57,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             listArray[0] = newEntry;
         }
 
+    /**
+     * Adds a new element to the end of the list.
+     * The list's size is incermented.
+     *
+     * @param newEntry The object to be added as a new element in the list.
+     */
         @Override
         public void addBack(T newEntry) {
             if(isEmpty()){
@@ -46,6 +77,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         }
 
+    /**
+     * Removes an element from the front of the list.
+     * The list's  number of elements is decermented.
+     *
+     * @return The removed element or null if the list is empty.
+     */
         @Override
         public T removeFront() {
           if(numberOfElements>0){
@@ -56,7 +93,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
           }
             return null;
         }
-
+    /**
+     * Removes an element from the end of the list.
+     * The list's  number of elements is decermented.
+     *
+     * @return The removed element or null if the list is empty.
+     */
         @Override
         public T removeBack() {
           if(numberOfElements>0){
@@ -67,7 +109,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             }
             return null;
         }
-
+    /**
+     * Retrieves the element at a the given position in this list.
+     *
+     * @param position An integer that indicates the index of the desired entry.
+     * @return The element at the given index or null if the index is out of bounds.
+     */
         @Override
         public T getEntry(int position) {
             if (!isEmpty() && (position > -1 && position <= numberOfElements)) {
@@ -77,7 +124,10 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             }
         }
 
-        @Override
+    /**
+     * Prints the contents of the list to the screen
+     */
+    @Override
         public void display() {
           for(T item : listArray){
             if(!item == null){
@@ -87,6 +137,12 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
           }
         }
 
+    /**
+     * Checks whether this list contains a given entry.
+     *
+     * @param anEntry the object to search for in the list.
+     * @return the position of the entry that was found or -1 if the object is not found.
+     */
         @Override
         public int contains(T anEntry) {
             for (int i = 0; i < numberOfElements; i++) {
@@ -97,16 +153,27 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             return -1;
         }
 
-        @Override
+    /**
+     * Tests to see if the list is empty
+     * @return The boolean result of the test for emptyness
+     */
+    @Override
         public boolean isEmpty() {
             return (numberOfElements == 0);
         }
 
-        @Override
+    /**
+     * Gets the size of the list
+     * @return a count of the elements in the list
+     */
+    @Override
         public int size() {
             return numberOfElements;
         }
 
+    /**
+     * Removes all elements from the list
+     */
         @Override
         public void clear() {
             for (int i = 0; i < numberOfElements; i++) {
@@ -116,6 +183,9 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         }
 
+        //Private helper methods
+
+        //Shifts elements backward in the list
         private void shiftBack(){
 
             if (numberOfElements + 1 > listArray.length){
@@ -127,6 +197,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         }
 
+        //Shifts elements forward in the list
         private void shiftUp(){
             if (numberOfElements + 1 > listArray.length){
                 makeRoom();
@@ -136,6 +207,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
             }
         }
 
+        //Increases the size of the list
         private int makeRoom(){
             T[] newArray = (T[]) new Object[listArray.length * 2];
 
