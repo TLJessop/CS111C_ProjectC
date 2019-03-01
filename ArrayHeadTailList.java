@@ -48,20 +48,24 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
 
         @Override
         public T removeFront() {
+          if(numberOfElements>0){
           private T temp = listArray[0];
           shiftUp();
           numberOfElements--;
-            return temp;
+          return temp;
+          }
+            return null;
         }
 
         @Override
         public T removeBack() {
+          if(numberOfElements>0){
             private T temp = listArray[numberOfElements-1];
             listArray[numberOfElements - 1] = null;
-            if(numberOfElements>0){
-              numberOfElements--;
-            }
+            numberOfElements--;
             return temp;
+            }
+            return null;
         }
 
         @Override
