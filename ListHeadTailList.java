@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * This class is an list based implemntilaton of HeadTailListInterface
  *
- * @author Michael Vincent Rayo
+ * @author Michael Vincent Rayo, Thomas Jessup, Kurt Wahlberg
  *
  * @since 2019-02-28
  *

@@ -3,7 +3,7 @@ true
 true
 
 0 elements; capacity = 10
-0 elements; capacity N/A	
+0 elements; capacity N/A
 
 
 ********TESTING ADD TO FRONT
@@ -20,7 +20,7 @@ false
 
 ********TESTING CLEAR
 0 elements; capacity = 10
-0 elements; capacity N/A	
+0 elements; capacity N/A
 
 
 ********TESTING ADD TO BACK
@@ -95,4 +95,3 @@ null
 ********TESTING WITH STRINGS
 5 elements; capacity = N/A	[You, did, it!, Nice, job!]
 5 elements; capacity = 5	[You, did, it!, Nice, job!]
-

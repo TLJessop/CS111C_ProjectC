@@ -1,16 +1,15 @@
-package Interface_Project_C;
 
 import java.util.Arrays;
 
 /**
  * This class is an array based implemntilaton of HeadTailListInterface
- * 
+ *
  * @author Michael Vincent Rayo
  * @author Thomas Lynn Jessop
  * @author Kurt Wahlberg
- * 
+ *
  * @since 2019-02-28
- * 
+ *
  * @version 2.0
  *
  */
@@ -86,7 +85,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         @Override
         public T removeFront() {
           if(numberOfElements>0){
-          private T temp = listArray[0];
+          T temp = listArray[0];
           shiftUp();
           numberOfElements--;
           return temp;
@@ -102,7 +101,7 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
         @Override
         public T removeBack() {
           if(numberOfElements>0){
-            private T temp = listArray[numberOfElements-1];
+            T temp = listArray[numberOfElements-1];
             listArray[numberOfElements - 1] = null;
             numberOfElements--;
             return temp;
@@ -129,9 +128,11 @@ public class ArrayHeadTailList<T> implements HeadTailListInterface<T> {
      */
     @Override
         public void display() {
+            System.out.printf("capacity: %s  Elements: %s", String.valueOf(listArray.length), String.valueOf(numberOfElements));
+
           for(T item : listArray){
-            if(!item == null){
-              System.out.printf("%s %n", item);
+            if(item != null){
+              System.out.println(item);
             }
           }
         }
